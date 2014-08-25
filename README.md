@@ -77,7 +77,7 @@ then, remove comments, and insert your key:
 </script>
 ```
 
-- re-load http://localhost:8000/index.html. You should get an error popup from google as the key you specified is for an iOS app. 
+- re-load http://localhost:8000/index.html. You should get an error popup from google as the key you specified is for an iOS app. (I.E., it's not a google maps API "browser key".)
 
 - enjoy experimenting with different keys. Investigate network traffic with FireBug (for browser observations) and [SquidMan](http://squidman.net/) and [tcpdump]() (for traffic originating from iOS). 
 
