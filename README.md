@@ -7,7 +7,7 @@ This example app illustrates a method of configuring PhoneGap Build to manage a 
 
 ## Secret Sauce
 
-- index.html loads the google maps V3 SDK without specifying a key
+- index.html loads the google maps V3 API without specifying a key
 
 ```xml
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true" >
@@ -38,7 +38,7 @@ So, my conjecture is that an iOS service, "GMSServices", underneath the app, is 
 
 - get Apple Developer credentials and register your iOS device for development, establish a PhoneGap Build account, and pbB-install your credentials. 
 
-- from the Google API console, activate the Google Maps SDK for iOS, then get a google maps v3 API key for iOS making sure that the iOS bundle identifier matches the one specified for your Apple (and pgB) credentials. Note that the geolocation service API is not necessary.
+- from the Google API console, activate the Google Maps API for iOS, then get a google maps v3 API key for iOS making sure that the iOS bundle identifier matches the one specified for your Apple (and pgB) credentials. Note that the geolocation service API is not necessary.
 
 - install [QRReader](https://itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8) on your iOS device.
 
@@ -57,7 +57,7 @@ So, my conjecture is that an iOS service, "GMSServices", underneath the app, is 
 
 #### workstation-based testing
 
-- use firefox to load http://localhost:8000/index.html from the project directory on your workstation. Observe network traffic with the [firebug plugin](http://getfirebug.com/) for firefox. By default, you are not using an API key when you load the SDK via http. OSX hint: start a local webserver from the project directory with
+- use firefox to load http://localhost:8000/index.html from the project directory on your workstation. Observe network traffic with the [firebug plugin](http://getfirebug.com/) for firefox. By default, you are not using an API key when you load the API via http. OSX hint: start a local webserver from the project directory with
 
 ```bash
 python -m SimpleHTTPServer 8000
