@@ -87,7 +87,7 @@ then, remove comments, and insert your key:
 The google API console is not very friendly and it is unclear how quickly the data is updated.
 
 
-## TODO:
+## TODO
 
 Extend this cookbook to cover android keys.
 
