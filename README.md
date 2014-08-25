@@ -79,7 +79,12 @@ then, remove comments, and insert your key:
 
 - re-load http://localhost:8000/index.html. You should get an error popup from google as the key you specified is for an iOS app. (I.E., it's not a google maps API "browser key".)
 
-- now, create a "browser key" with referrers "*.*", and use it to load the API. Google should be happy.
+- now, create a "browser key" with referrers 
+
+```xml
+"*.*"
+```
+, and use this new key to load the API. Google should be happy.
 
 - enjoy experimenting with different keys. Investigate network traffic with FireBug (for browser observations) and [SquidMan](http://squidman.net/) and [tcpdump]() (for traffic originating from iOS). 
 
