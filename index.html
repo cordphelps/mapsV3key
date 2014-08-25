@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<!--
+/*
+ * mapsV3APIkeys
+ *
+ * Cord Phelps
+ * Copyright 2014, MIT License
+ * http://www.opensource.org/licenses/MIT
+ *
+ * Software distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+-->
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>mapsV3key</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css" />
+
+
+<!-- secret sauce to get phonegapBuild to include cordova -->
+<!-- http://stackoverflow.com/questions/20924734/cant-use-navigator-camera-getpicture-on-ios-phonegap-adobe-build -->
+<script src="cordova.js"></script>
+<!-- end secret sauce -->
+
+<script src="js/vendor/jquery-1.10.2.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=true" >
+</script>
+
+
+<!--
+  enable this script tag to test your key in a browser  (replacing the string "INSERT-YOUR-KEY-HERE")
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3&key=INSERT-YOUR-KEY-HERE&sensor=true" >
+</script>
+
+
+  the browser will report that google is unhappy if a bad key is presented
+
+// Google has disabled use of the Maps API for this application. The provided key is not a valid Google 
+// API Key, or it is not authorized for the Google Maps Javascript API v3 on this site. If you are the 
+// owner of this application, you can learn about obtaining a valid key 
+// here: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
+</script>
+-->
+
+<script>
+
+$(document).bind("mobileinit",  function() {
+
+  $.support.cors = true;
+  $.mobile.allowCrossDomainPages = true;
+  $.mobile.defaultPageTransition = "fade";
+
+  });
+
+var map = new Object;
+
+</script>
+
+<!-- the last script to load -->
+<script src="js/vendor/jquery.mobile-1.4.3.min.js"></script>
+
+
+</head>
+
+<body style="text-align:center">
+
+
+<div data-role="page" id="page2" data-fullscreen="true" data-theme="c">
+
+	<div data-role="header" data-fullscreen="true" id="page2Header" class="headerClass">
+		
+		<div data-role="controlgroup" data-type="horizontal">
+			<!--
+
+        -->
+  			<button data-inline="true" data-icon="camera" id='cameraBtn'>&#46</button>
+  			<button data-inline="true" data-icon="refresh" id='refreshBtn'>&#46</button>
+  			<button data-inline="true" data-icon="search" id='navigateBtn'>&#46</button>
+        <button data-inline="true" data-icon="eye" id='eyeBtn'>&#46</button> 
+
+  		</div>
+	</div>
+	
+	<div id='page2Content' class='pageContent' data-role="content" style="padding:1px">
+
+        	
+      <div id="mapCanvas" class='mapCanvas' ></div>
+
+
+  </div> <!-- end of content -->
+
+  <div id='page2Footer' data-role="footer" class="footerClass" data-position="fixed" data-tap-toggle="false"> 
+  <!-- <div id='page2Footer' data-role="footer" class="ui-bar headerClass" data-position="fixed"> -->
+
+    <div data-role="controlgroup" data-type="horizontal" >
+
+      <button data-inline="true" id='infoButton' data-icon="info" >tap me</button>
+
+        <!-- <div id="infoButton" ></div>  -->
+
+      </div> <!-- end control group --> 
+
+    </div> <!-- end footer -->
+
+  <script>
+
+    $("#infoButton").click(function() {
+
+      $.mobile.changePage($("#info"), { transition: 'fade' });
+
+    }); // end click
+
+  </script>
+
+
+</div> <!-- end of page2 -->
+
+
+
+<!-      ----------------------------------------------------------------------------- -->
+<!-      ----------------------------------------------------------------------------- -->
+<!-      ----------------------------------------------------------------------------- -->
+
+
+<div data-role="page" id="info" data-cache="false" data-theme="c">
+
+  <div data-role="header" id="infoHeader" data-theme="c" class="headerClass">
+
+    <div data-role="controlgroup" data-type="horizontal">
+
+    </div> <!-- end control group --> 
+
+  </div>
+  
+  <div data-role="content" id="infoContent" class='pageContent'>
+
+    <div class='infoContentWrapper'  >
+
+      <div id="smallPrint" style="width:60%;text-align:justify;left:20%" >
+
+    <p> 
+      Mystery solved! (at least for iOS in version 1 of this cookbook)
+    </p>
+
+    <p> 
+      Pure html5 apps using a private google maps v3 API key via phonegapBuild.
+    </p>
+
+
+    </div  >
+
+
+  </div> <!-- end content wrapper -->
+
+
+  </div> <!-- end page content -->
+
+
+  <div data-role="footer" id="infoFooter" class="footerClass" data-theme="c" data-position="fixed" data-tap-toggle="false"> 
+
+    <div data-role="controlgroup" data-type="horizontal">
+
+      <button data-inline="true" id="infoBackBtn" data-icon="back" >click me</button> 
+
+    </div> <!-- end control group --> 
+
+  </div> <!-- end footer --> 
+
+  <script>
+
+    $("#infoBackBtn").click(function() {
+
+      $.mobile.changePage($("#page2"), { transition: 'fade' });
+
+
+    }); // end backbtn click
+
+
+  </script>
+
+</div> <!-- end page pageInfo -->
+
+
+
+<!-- end of pages -->
+
+
+<!-      ----------------------------------------------------------------------------- -->
+<!-      ----------------------------------------------------------------------------- -->
+<!-      ----------------------------------------------------------------------------- -->
+
+<script>
+
+  $(document).on('pageshow', '#page2', function() {
+ 
+    $(window).resize(); // ensure tiles are loaded
+      
+  } );
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  function initialize() {
+
+    var defaultPosition = {
+    latitude: 37.429793,
+    longitude: -122.169546,
+    zoom: 13 
+    }
+
+    var latLng = new google.maps.LatLng(defaultPosition.latitude, defaultPosition.longitude);
+
+    var mapOptions = {
+      zoom: defaultPosition.zoom,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: latLng,
+      panControl: false,
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      overviewMapControl: false
+    };
+
+    map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+
+    var view = getAvailableDimensions();
+
+    $('#mapCanvas').css({height: ((view.availableContentHeight)-4) + 'px' });
+
+  }
+
+
+
+  function getAvailableDimensions() {
+
+    var imagePixels = 300;
+
+  // http://www.gajotres.net/using-google-maps-javascript-api-v3-with-jquery-mobile/
+
+    var header = $('.headerClass').height();
+    //console.log("header: " + header);
+
+    var footer = $('.footerClass').height();
+    //console.log("footer (should be 1% larger than header): " + footer);
+
+    var viewport_height = $(window).height(); 
+    //console.log("viewport_height: " + viewport_height);
+ 
+    var content_height = viewport_height - header - footer ;
+    //console.log("content_height: " + content_height);
+
+    // if (!isMobile) {
+
+      var fromTop = 0;
+
+      // adjust the vertical position of .swipe-wrap inside of .swipe
+      if (imagePixels <= content_height) {
+
+        var remainderPct = ((content_height - imagePixels)/content_height) * 100;
+        // console.log("remainderPct: " + remainderPct);
+
+        var mysteryAdjustment = 5;
+        fromTop = (remainderPct / 2) - mysteryAdjustment;
+
+      // http://stackoverflow.com/questions/3384548/missing-after-property-id
+        // $('.swipe-wrap').css({"margin-top": fromTop + '%' });
+
+        //console.log("set .swipe-wrap margin-top to: " + fromTop + "%");
+
+      }
+      else {
+
+        fromTop = 0;
+      }
+
+    return {
+      viewportHeight: viewport_height,
+      availableContentHeight: content_height,
+      imageFromTop: fromTop
+    }
+
+}
+
+  
+
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+
