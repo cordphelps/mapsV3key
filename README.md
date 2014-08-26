@@ -36,7 +36,7 @@ So, my conjecture is that an iOS service, "GMSServices", underneath the app, is 
 
 ## Installation
 
-- get Apple Developer credentials and register your iOS device for development, establish a PhoneGap Build account, and pbB-install your credentials. 
+- get Apple Developer credentials and register your iOS device for development, establish a PhoneGap Build account, and pgB-install your credentials. 
 
 - from the Google API console, activate the Google Maps API for iOS, then get a google maps v3 API key for iOS making sure that the iOS bundle identifier matches the one specified for your Apple (and pgB) credentials. Note that the geolocation service API is not necessary.
 
@@ -84,7 +84,7 @@ then, remove comments, and insert your key:
 ```xml
 "*.*"
 ```
-, and use this new key to load the API. Google should be happy.
+and use this new key to load the API. Google should be happy. NB: Even though it works, its not a good idea to leave your key exposed to the world in this way, especially with wide-open referrers. 
 
 - enjoy experimenting with different keys. Investigate network traffic with FireBug (for browser observations) and [SquidMan](http://squidman.net/) and [tcpdump]() (for traffic originating from iOS). 
 
