@@ -1,6 +1,6 @@
 # Handling Google Maps V3 API keys for an html5 app built using PhoneGap Build.
 
-[PhoneGap Build](https://build.phonegap.com/faq) is a cloud-based service that builds mobile apps from [html5](http://www.html5rocks.com/en/)-based resources. The combination is compelling; no IDE requirements, a javascript core with tangy [community support](http://stackoverflow.com/), and no additional tools to download and maintain on the workstation. Combined with [github](https://github.com/) as a code repository, your laptop can go swimming and your app project lives on.
+[PhoneGap Build](https://build.phonegap.com/faq) is a cloud-based service that builds mobile apps from [html5](http://www.html5rocks.com/en/) resources. The combination is compelling; no IDE requirements, a javascript core with tangy [community support](http://stackoverflow.com/), and no additional tools to download and maintain on the workstation. Combined with [github](https://github.com/) as a code repository, your laptop can go swimming and your app project lives on.
 
 This example app illustrates a method of configuring PhoneGap Build to manage a [google maps V3](https://developers.google.com/maps/) API key in an html5 iOS app.  
 
